@@ -21,6 +21,9 @@ function processRules(input) {
     if (numberOfChildren < 0) {
         throw new Error("Invalid input: numberOfChildren cannot be negative");
     }
+    if (numberOfChildren > 40) {
+        throw new Error("Invalid input: numberOfChildren cannot be more than 40");
+    }
 
     // Validating family Composition
     if (!familyComposition) throw new Error("Invalid input: Missing familyComposition");
