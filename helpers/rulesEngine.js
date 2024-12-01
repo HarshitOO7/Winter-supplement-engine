@@ -6,28 +6,30 @@ function processRules(input) {
 
     const { id, numberOfChildren, familyComposition, familyUnitInPayForDecember } = input;
 
-    // Validate required fields
+    // Validating id
     if (!id) throw new Error("Invalid input: Missing id");
-    if (typeof numberOfChildren !== 'number') {
-        throw new Error("Invalid input: numberOfChildren must be a number");
-    }
 
-    if (!familyComposition) throw new Error("Invalid input: Missing familyComposition");
+    // Validating Family unit in pay for december
     if (typeof familyUnitInPayForDecember !== 'boolean') {
         throw new Error("Invalid input: Missing familyUnitInPayForDecember");
     }
 
-    // Validate numberOfChildren
+    // Validating the Number of children
+    if (typeof numberOfChildren !== 'number') {
+        throw new Error("Invalid input: numberOfChildren must be a number");
+    }
     if (numberOfChildren < 0) {
         throw new Error("Invalid input: numberOfChildren cannot be negative");
     }
 
-    // Validate familyComposition
+    // Validating family Composition
+    if (!familyComposition) throw new Error("Invalid input: Missing familyComposition");
     if (familyComposition !== 'single' && familyComposition !== 'couple') {
         throw new Error("Invalid input: Unsupported familyComposition value");
     }
 
-    //Calculating
+    // Calculating
+    // Check eligibility
     if (!familyUnitInPayForDecember) {
         return {
             id,
@@ -38,14 +40,15 @@ function processRules(input) {
         };
     }
 
+    // Initialize baseAmount
     let baseAmount = 0.0;
-    if (familyComposition === 'single') baseAmount = 60;
-    if (familyComposition === 'couple') baseAmount = 120;
+    if (familyComposition === 'single') baseAmount = 60.0;
+    if (familyComposition === 'couple') baseAmount = 120.0;
 
-    const childrenAmount = 20 * numberOfChildren;
+    const childrenAmount = 20.0 * numberOfChildren;
+    // Total supplement amount
     const supplementAmount = baseAmount + childrenAmount;
-    console.log(supplementAmount);
-    
+
     return {
         id,
         isEligible: true,

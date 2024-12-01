@@ -1,11 +1,11 @@
+require('dotenv').config();
+
 const mqtt = require('mqtt');
 const { processRules } = require('./helpers/rulesEngine');
 
-//change MQTT id here
-const MQTT_ID = 'aea1790e-f72a-49d6-9d56-5e5ef21db390';
-
 // Constants
-const BROKER_URL = 'mqtt://test.mosquitto.org:1883';
+const MQTT_ID = process.env.MQTT_ID;
+const BROKER_URL = process.env.BROKER_URL;
 const INPUT_TOPIC = `BRE/calculateWinterSupplementInput/${MQTT_ID}`;
 const OUTPUT_TOPIC = `BRE/calculateWinterSupplementOutput/${MQTT_ID}`;
 
@@ -25,11 +25,11 @@ client.on('connect', () => {
     });
 });
 
-//Incoming messages
+// Incoming messages
 client.on('message', (topic, message) => {
     try {
         console.log(`Message received on topic: ${topic}`);
-        
+
         // Parse the message and process the rules
         const input = JSON.parse(message.toString());
         console.log(`Input JSON:`, input);
@@ -53,7 +53,7 @@ client.on('message', (topic, message) => {
 // Handle connection errors
 client.on('error', (error) => {
     console.error('Connection error:', error.message);
-    client.end(); 
+    client.end();
 });
 
 
