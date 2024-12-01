@@ -69,7 +69,7 @@ npm start
 ![Example output image](public/images/output.png)
 
 ## Testing
-Unit tests are provided to validate the functionality of the rules engine.
+Unit tests are provided to validate the functionality of the rules engine and MQTT connection.
 **Run Tests**
 ```bash
 npm test
@@ -82,6 +82,7 @@ The tests cover:
 - Calculation of base amounts.
 - Handling of invalid inputs.
 - Edge cases.
+- MQTT connection.
 
 **Example Test Output:**
 ![Example test output image](public/images/test.png)
