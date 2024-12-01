@@ -118,6 +118,7 @@ winter-supplement-engine/
 ├── helpers/
 │   └── rulesEngine.js        # Rules engine logic
 ├── tests/
+    └── mqtt.test.js          # Unit tests for the MQTT connection
 │   └── rulesEngine.test.js   # Unit tests for the rules engine
 ├── .env                      # Environment variables file
 ├── package.json              # Project metadata and dependencies
